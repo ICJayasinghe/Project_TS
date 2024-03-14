@@ -1,0 +1,29 @@
+<div class="container p-4 border border-gray-500 rounded-3xl shadow-md max-w-md mx-auto my-4 bg-white">
+  <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
+      <div class="flex items-center pl-2">
+          <label for="task" class="mr-3 mb-1 text-gray-700">Add Task</label>
+          <div class="flex items-center">
+              <input required="" type="text" class="form-control mr-3 mb-1 border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:border-blue-400" id="task" aria-describedby="task" placeholder="Enter Task" ngModel name="task">
+              <button type="submit" class="px-4 py-2 rounded-lg bg-sky-200 hover:bg-sky-400 mb-1 text-white font-semibold focus:outline-none focus:bg-sky-400" [disabled]="taskForm.invalid">Add</button>
+          </div>
+      </div>
+  </form>
+  <div class="mt-4">
+      <table class="table w-full">
+          <thead>
+              <tr>
+                  <th scope="col" class="text-left ">Task</th>
+                  <th scope="col" class="text-left pl-4">Complete</th>
+                  <th scope="col" class="text-left pl-3">Delete</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let t of taskArray; index as i">
+                  <td class="py-2 pl-3">{{t.taskName}}</td>
+                  <td class="py-2 pl-5"><input id="checkbox" class="checkbox" (change)="onCheck(i)" type="checkbox"></td>
+                  <td class="py-2"><button class="btn btn-danger btn-sm" (click)="onDelete(i)">Delete</button></td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
